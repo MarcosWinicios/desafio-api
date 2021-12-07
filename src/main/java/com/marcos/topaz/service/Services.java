@@ -17,12 +17,13 @@ public class Services {
 	}
 	
 	public boolean validateId(String id) {
-		System.out.println("Valor: " + id + "\n" + "Tamanho: " + id.length());
-		if(id.startsWith("a") || id.length() <=12) {
-			return true;
-		}
+		char firstCharacter = id.charAt(0);
+		Character.toString(firstCharacter);
 		
-		return false;
+		return "a"
+				.equalsIgnoreCase(Character
+						.toString(firstCharacter)) 
+				&& id.length() <=12;
 	}
 	
 	public List<Double> reverseList(List<Double> list ){
