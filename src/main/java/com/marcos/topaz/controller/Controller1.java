@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.marcos.topaz.dto.InputIdDTO;
+import com.marcos.topaz.dto.input.IdInputDTO;
+import com.marcos.topaz.dto.result.SumResultDTO;
+import com.marcos.topaz.dto.result.ValidationIdResultDTO;
 import com.marcos.topaz.service.Services;
 
 
@@ -21,24 +23,13 @@ public class Controller1 {
 	private Services service;
 	
 	@GetMapping("/sum")
-	public ResponseEntity<Double> sum(@RequestHeader Double firstNumber, @RequestHeader Double secondNumber){		
-		return ResponseEntity.ok(service.sum(firstNumber, secondNumber));
+	public ResponseEntity<SumResultDTO> sum(@RequestHeader Double firstNumber, @RequestHeader Double secondNumber){	
+		Double result = service.sum(firstNumber, secondNumber);
+		return ResponseEntity.ok(new SumResultDTO(result));
 	}
 	
 	@GetMapping("/validate-id")
-	public ResponseEntity<Boolean> validateId(@RequestBody String id){		
-		return ResponseEntity.ok( service.validateId(id));
+	public ResponseEntity<ValidationIdResultDTO> validateId(@RequestBody IdInputDTO id){		
+		return ResponseEntity.ok(new ValidationIdResultDTO(service.validateId(id.getId())));
 	}
-	
-	@GetMapping("/validate")
-	public ResponseEntity<String> validateIdRegex(@RequestBody String id){
-		
-		System.out.println(id);
-		
-		return ResponseEntity.ok( id);
-	}
-	
-	
-	
-	
 }

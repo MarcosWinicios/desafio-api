@@ -1,4 +1,4 @@
-package com.marcos.topaz;
+package com.marcos.topaz.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.marcos.topaz.service.Services;
 
 @SpringBootTest
-class TopazApplicationTests {
+class ServicesTest {
 
 	@Autowired
 	private Services services;
@@ -51,10 +51,9 @@ class TopazApplicationTests {
 		assertTrue(services.validateId("a12365489651"));//Inicia com a letra 'A'maiúscula e 12 caracteres
 		assertTrue(services.validateId("A12365489651"));//Inicia com a letra 'a' minuscula e 12 caracteres
 		assertTrue(services.validateId("A12365489"));//Inicia com a letra 'a' Maiúscula com menos que 12 caracteres
+		assertTrue(services.validateId(" A123 65489           "));//Deve ignorar os espaços
 		
 		assertFalse(services.validateId("a1236589784525"));//Inicia com a letra 'A' e tem mais que 12 caracteres
 		assertFalse(services.validateId("c12345678962"));//Não inicia com a letra 'a' mas possui até 12 caracteres
-		
 	}
-
 }

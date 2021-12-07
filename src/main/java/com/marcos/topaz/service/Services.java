@@ -17,27 +17,17 @@ public class Services {
 	}
 	
 	public boolean validateId(String id) {
+		id = id.trim().replaceAll("\\s+", "");//remove espaços
+
 		char firstCharacter = id.charAt(0);
 		Character.toString(firstCharacter);
-		
-		return "a"
-				.equalsIgnoreCase(Character
-						.toString(firstCharacter)) 
-				&& id.length() <=12;
+
+		return  "a".equalsIgnoreCase(Character.toString(firstCharacter)) 
+				&& id.length() <= 12;
 	}
 	
 	public List<Double> reverseList(List<Double> list ){
 		Collections.sort(list, Collections.reverseOrder());
 		return list;
-	}
-		
-	
-	
-	public boolean validaarId(String id) {
-		System.out.println("Valor: " + id + "\n" + "Tamanho: " + id.length());
-		
-		System.out.println(id.matches("a"));
-		
-		return false;
 	}
 }

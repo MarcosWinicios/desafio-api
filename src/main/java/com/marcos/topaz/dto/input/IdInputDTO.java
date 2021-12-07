@@ -1,6 +1,6 @@
-package com.marcos.topaz.dto;
+package com.marcos.topaz.dto.input;
 
-public class InputIdDTO {
+public class IdInputDTO {
 	private String id;
 
 	public String getId() {

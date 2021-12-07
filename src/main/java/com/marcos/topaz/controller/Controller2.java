@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.marcos.topaz.dto.input.NumberListInputDTO;
+import com.marcos.topaz.dto.result.ReverseListResultDTO;
 import com.marcos.topaz.service.Services;
 
 
@@ -21,7 +23,8 @@ public class Controller2 {
 	
 	
 	@PostMapping("/reverse-list")
-	public ResponseEntity<List<Double>> orndenarLista2(@RequestBody List<Double> numbers){
-		return ResponseEntity.ok(services.reverseList(numbers))	;
+	public ResponseEntity<ReverseListResultDTO> orndenarLista2(@RequestBody NumberListInputDTO numbersList){
+		List<Double> reverseList = services.reverseList(numbersList.getNumbersList());
+		return ResponseEntity.ok(new ReverseListResultDTO(reverseList));
 	}
 }
